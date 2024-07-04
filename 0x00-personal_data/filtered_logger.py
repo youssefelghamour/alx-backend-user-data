@@ -69,3 +69,47 @@ class RedactingFormatter(logging.Formatter):
         formatted_record = super().format(record)
 
         return formatted_record
+
+
+def main():
+    """ filteres user data from a database """
+    # Get logger with RedactingFormatter
+    logger = get_logger()
+
+    # Obtain database connection
+    db = get_db()
+
+    # Fetch all rows from users table
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM users;")
+    rows = cursor.fetchall()
+
+    # Example: rows fetched from the database
+    # rows = [
+    #     {'name': 'ysf', 'email': 'ysf@example.com', 'phone': '123',
+    #      'ssn': '14-89', 'password': 'sdkjb', 'ip': '192.168.1.1',
+    #      'last_login': '2023-01-01 12:00:00', 'user_agent': 'Mozilla/5.0'},
+    #
+    #     {'name': 'some user', 'email': 'user@example.com', ...}
+    # ]
+
+    # Close database connection
+    db.close()
+
+    # Log each row with sensitive information redacted using the logger
+    for row in rows:
+        # Each row is a dictionary
+        # Convert row dictionary to a formatted string
+        msg = "; ".join(f"{key}={value}" for key, value in row.items())
+        msg += ";"
+
+        # Create a log record with the formatted message
+        record = logging.LogRecord("user_data", logging.INFO, None, None,
+                                   msg, None, None)
+
+        # Log the formatted message using the logger
+        logger.handle(record)
+
+
+if __name__ == "__main__":
+    main()

@@ -27,6 +27,7 @@ def filter_datum(fields, redaction, message, separator):
         # + to capture more than one character (all chracters until we reach ;)
         pattern = r'{}=([^{}]+)'.format(field, separator)
 
-        modified_message = re.sub(pattern, '{}={}'.format(field, redaction), modified_message)
+        modified_message = re.sub(pattern, '{}={}'.format(field, redaction),
+                                  modified_message)
 
     return modified_message

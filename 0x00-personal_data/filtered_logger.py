@@ -13,7 +13,6 @@ import re
 def filter_datum(fields, redaction, message, separator):
     """ function filter sensitive fields in a log message """
     for field in fields:
-        pattern = r'{}=([^{}]+)'.format(field, separator)
-        modified_message = re.sub(pattern, '{}={}'.format(field, redaction),
-                                  message)
+        pattern = r'{}=([^{}{}]+)'.format(field, separator, separator)
+        message = re.sub(pattern, '{}={}'.format(field, redaction), message)
     return message

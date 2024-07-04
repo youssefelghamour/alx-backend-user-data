@@ -8,7 +8,7 @@ import logging
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
-def get_logger():
+def get_logger() -> logging.Logger:
     """ returns a logging.Logger object """
     logger = logging.getLogger("user_data")
     logger.setLevel(logging.INFO)

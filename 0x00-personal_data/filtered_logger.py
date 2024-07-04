@@ -7,5 +7,7 @@ from typing import List
 def filter_datum(fields: List[str], redaction: str, message: str,
                  separator: str) -> str:
     """ function filter sensitive fields in a log message """
-    return re.sub(r'({})=([^{}]+)'.format('|'.join(fields), separator),
-                  r'\1={}'.format(redaction), message)
+    for field in fields:
+        pattern = r'{}=([^{}]+)'.format(field, separator)
+        message = re.sub(pattern, '{}={}'.format(field, redaction), message)
+    return message

@@ -14,7 +14,7 @@ class Auth:
 
             - excluded_paths: Paths that do not require authentication
 
-            Returns: True if the path requires authentification, False otherwise
+            Returns: True if path requires authentification, False otherwise
         """
         if not path or not excluded_paths:
             return True

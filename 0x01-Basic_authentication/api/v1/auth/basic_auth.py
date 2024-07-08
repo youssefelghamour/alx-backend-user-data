@@ -48,8 +48,11 @@ class BasicAuth(Auth):
                 or ":" not in decoded_base64_authorization_header):
             return (None, None)
 
-        email = decoded_base64_authorization_header.split(":")[0]
-        password = decoded_base64_authorization_header.split(":")[1]
+        # email = decoded_base64_authorization_header.split(":")[0]
+        # password = decoded_base64_authorization_header.split(":")[1:]
+
+        # splits based on the first occurence of : and ignores the rest
+        email, sep, password = decoded_base64_authorization_header.partition(':')
 
         return (email, password)
 

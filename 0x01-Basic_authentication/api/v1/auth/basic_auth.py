@@ -52,7 +52,7 @@ class BasicAuth(Auth):
         # password = decoded_base64_authorization_header.split(":")[1:]
 
         # splits based on the first occurence of : and ignores the rest
-        email, sep, password = decoded_base64_authorization_header.partition(':')
+        email, s, password = decoded_base64_authorization_header.partition(':')
 
         return (email, password)
 

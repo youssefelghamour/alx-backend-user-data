@@ -40,7 +40,16 @@ def filter_datum(fields: List[str], redaction: str, message: str,
                  separator: str) -> str:
     """ function filter sensitive fields in a log message """
     for field in fields:
+        # () capture group that captures a specific pattern
+        # [] matches any one of the characters inside the brackets
+        # in this case, ^; translate literally to anything except semicolon
+        # (since ^ matches any character not listed in the brackets)
+        # + to capture more than one character (all chracters until we reach ;)
         pattern = r'{}=([^{}]+)'.format(field, separator)
+
+        # re.sub substitutes the pattern in the message
+        # re.sub(pattern, replacement, message)
+        # re.sub(r'password=1234', 'password=***', message)
         message = re.sub(pattern, '{}={}'.format(field, redaction), message)
     return message
 

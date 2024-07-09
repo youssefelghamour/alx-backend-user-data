@@ -27,6 +27,7 @@ class Auth:
             #       (path + "/").startswith(excluded_path)):
             #    return False
 
+        """
         for excluded_path in excluded_paths:
             if excluded_path.endswith('*'):
                 # Create regex pattern for paths ending with '*'
@@ -40,6 +41,13 @@ class Auth:
             else:
                 if path == excluded_path:
                     return False
+        """
+        for excluded_path in excluded_paths:
+            if excluded_path.endswith('*'):
+                if path.startswith(excluded_path[:-1]):
+                    return False
+            elif path == excluded_path:
+                return False
 
         return True
 

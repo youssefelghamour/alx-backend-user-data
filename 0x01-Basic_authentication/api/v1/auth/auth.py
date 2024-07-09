@@ -46,7 +46,7 @@ class Auth:
             if excluded_path.endswith('*'):
                 if path.startswith(excluded_path[:-1]):
                     return False
-            elif path == excluded_path:
+            elif path == excluded_path or (path + "/") == excluded_path:
                 return False
 
         return True

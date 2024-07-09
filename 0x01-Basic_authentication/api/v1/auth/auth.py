@@ -19,29 +19,6 @@ class Auth:
         if not path or not excluded_paths:
             return True
 
-        # for excluded_path in excluded_paths:
-            # if "path" or "path/" in excluded_paths
-            # excluded_paths contains string path always ending by a /
-
-            # if (path.startswith(excluded_path) or
-            #       (path + "/").startswith(excluded_path)):
-            #    return False
-
-        """
-        for excluded_path in excluded_paths:
-            if excluded_path.endswith('*'):
-                # Create regex pattern for paths ending with '*'
-                #   excluded_path[:-1] removes the * at the end
-                #   + r'.*' match any number of any characters
-                #   re.compile compiles it into a regex for matching
-                regex = re.compile(excluded_path[:-1] + r'.*')
-
-                if regex.fullmatch(path):
-                    return False
-            else:
-                if path == excluded_path:
-                    return False
-        """
         for excluded_path in excluded_paths:
             if excluded_path.endswith('*'):
                 if path.startswith(excluded_path[:-1]):

@@ -1,7 +1,6 @@
 # 0x02. Session authentication - API
 
-Simple HTTP API for playing with `User` model.
-
+HTTP API designed for managing user data and authentication within a Flask application. This API provides endpoints for user management and employs various authentication mechanisms, including basic authentication and session-based authentication with support for session expiration and database storage.
 
 ## Files
 

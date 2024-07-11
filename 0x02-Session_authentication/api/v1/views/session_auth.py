@@ -31,7 +31,7 @@ def login():
         return jsonify({"error": "no user found for this email"}), 404
 
     if not users:
-        return jsonify({ "error": "no user found for this email" }), 404
+        return jsonify({"error": "no user found for this email"}), 404
 
     if not users[0].is_valid_password(password):
         return jsonify({"error": "wrong password"}), 401

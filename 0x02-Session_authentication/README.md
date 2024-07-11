@@ -1,4 +1,4 @@
-# 0x02. Session authentication - Session API
+# 0x02. Session authentication - API
 
 Simple HTTP API for playing with `User` model.
 

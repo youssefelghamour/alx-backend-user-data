@@ -4,6 +4,7 @@ Auth class module
 """
 from flask import request
 from typing import List, TypeVar
+from os import getenv
 
 
 class Auth:
@@ -42,3 +43,14 @@ class Auth:
     def current_user(self, request=None) -> TypeVar('User'):
         """ Placeholder method for retrieving current user """
         return None
+
+    def session_cookie(self, request=None):
+        """ Returns a cookie value (session id) from a request """
+        if not request:
+            return None
+
+        _my_session_id = getenv("SESSION_NAME")
+
+        session_cookie = request.cookies.get(_my_session_id)
+
+        return session_cookie

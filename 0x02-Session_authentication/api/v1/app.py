@@ -40,11 +40,12 @@ def authenticate():
 
         if auth.require_auth(request.path, excluded_paths):
             authorization_header = auth.authorization_header(request)
-            request.current_user = auth.current_user(request)
             session_id = auth.session_cookie(request)
 
             if authorization_header is None and session_id is None:
                 abort(401)
+
+            request.current_user = auth.current_user(request)
 
             if request.current_user is None:
                 abort(403)

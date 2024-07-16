@@ -40,7 +40,7 @@ class DB:
 
         return new_user
 
-    def find_user_by(self, **kwargs):
+    def find_user_by(self, **kwargs) -> User:
         """ finds and returns a user """
         try:
             user = self._session.query(User).filter_by(**kwargs).first()

@@ -42,22 +42,13 @@ class DB:
 
     def find_user_by(self, **kwargs):
         """ finds and returns a user """
-        valid_keys = []
-        for key in kwargs.keys():
-            if hasattr(User, key):
-                valid_keys.append(key)
+        try:
+            user = self._session.query(User).filter_by(**kwargs).first()
 
-        filtered_kwargs = {}
-        for key in valid_keys:
-            filtered_kwargs[key] = kwargs[key]
+            if user is None:
+                raise NoResultFound
 
-        if filtered_kwargs:
-            try:
-                user = self._session.query(User).filter_by(**filtered_kwargs).first()
-                if user is None:
-                    raise NoResultFound
-                return user
-            except InvalidRequestError:
-                raise
-        else:
-            raise InvalidRequestError
+            return user
+
+        except InvalidRequestError:
+            raise

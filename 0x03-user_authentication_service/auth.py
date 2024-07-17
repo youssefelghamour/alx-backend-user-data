@@ -46,3 +46,15 @@ class Auth:
                                   user.hashed_password)
         except Exception:
             return False
+
+    def create_session(self, email: str) -> str:
+        """ creates a new session for a user """
+        try:
+            user = self._db.find_user_by(email=email)
+
+            new_session_id = _generate_uuid()
+            self._db.update_user(user.id, session_id=new_session_id)
+
+            return new_session_id
+        except Exception:
+            return None

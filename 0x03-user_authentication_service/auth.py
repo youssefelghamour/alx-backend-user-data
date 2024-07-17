@@ -69,3 +69,5 @@ class Auth:
             return user
         except Exception:
             return None
+
+        return None

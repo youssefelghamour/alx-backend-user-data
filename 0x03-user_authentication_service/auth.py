@@ -6,6 +6,7 @@ from db import DB
 from user import User
 from sqlalchemy.orm.exc import NoResultFound
 import uuid
+from typing import Union
 
 
 def _hash_password(password: str) -> bytes:
@@ -69,5 +70,3 @@ class Auth:
             return user
         except Exception:
             return None
-
-        return None

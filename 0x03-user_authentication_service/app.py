@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 @app.route("/", methods=["GET"], strict_slashes=False)
-def index():
+def index() -> str:
     """ GET /
         Return:
             JSON welcome message

@@ -115,7 +115,7 @@ def update_password() -> str:
         Updates the password for a user
 
         Returns:
-            JSON response with user
+            JSON response with user.
     """
     email = request.form.get("email")
     reset_token = request.form.get("reset_token")
